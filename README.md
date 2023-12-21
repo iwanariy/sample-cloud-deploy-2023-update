@@ -23,15 +23,3 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
     --format="value(projectNumber)")-compute@developer.gserviceaccount.com \
     --role="roles/run.developer"
 ```
-
-```bash
-gcloud deploy apply --file=clouddeploy.yaml --region=us-central1 --project=$PROJECT_ID
-```
-
-```bash
-gcloud deploy releases create test-release-001 \
-   --project=$PROJECT_ID \
-   --region=us-central1 \
-   --delivery-pipeline=my-run-demo-app-1 \
-   --images=my-app-image=gcr.io/cloudrun/hello
-```
