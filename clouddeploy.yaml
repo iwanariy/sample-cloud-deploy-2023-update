@@ -10,7 +10,7 @@ serialPipeline:
     strategy:
       standard:
         verify: true
-  - targetId: run-prod
+  - targetId: run-prod-multi
     profiles: [prod]
 ---
 
@@ -20,13 +20,31 @@ metadata:
   name: run-dev
 description: Cloud Run development service
 run:
-  location: projects/iwanariy-cd-update-2023/locations/us-central1
+  location: projects/iwanariy-cd-update-2023/locations/asia-northeast1
 ---
 
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: run-prod
-description: Cloud Run production service
+ name: run-prod-multi
+description: Cloud Run production service in Tokyo and Osaka
+multiTarget:
+ targetIds: [ run-prod-tok, run-prod-osa ]
+
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: run-prod-tok
+description: Cloud Run production service in Tokyo
 run:
-  location: projects/iwanariy-cd-update-2023/locations/us-central1
+  location: projects/iwanariy-cd-update-2023/locations/asia-northeast1
+
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: run-prod-osa
+description: Cloud Run production service in Osaka
+run:
+  location: projects/iwanariy-cd-update-2023/locations/asia-northeast2
