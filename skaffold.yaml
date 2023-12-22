@@ -19,4 +19,4 @@ verify:
     name: alpine
     image: alpine
     command: ["/bin/sh"]
-    args: ["-c", "wget https://deploy-run-service-dev-2i5xysjeaq-uc.a.run.app"]
+    args: ["-c", "wget ${CLOUD_RUN_SERVICE_URLS}"]
