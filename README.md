@@ -10,7 +10,7 @@ Cloud Deploy 2023 updates sample
 
 
 ## Permission
-以下の権限が過剰、あるいは権限等が不足している可能性がありますので、その点をご留意下さい。
+以下は、権限が過剰 or 権限等が不足している可能性がありますので、参考として記載しています。
 
 ```bash
 PROJECT_ID="YOUR_PROJECT_ID"
