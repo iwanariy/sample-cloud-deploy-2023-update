@@ -10,6 +10,8 @@ serialPipeline:
     strategy:
       standard:
         verify: true
+        postdeploy:
+          actions: ["postdeploy-make-cloud-run-services-public"]
   - targetId: run-prod-multi
     profiles: [prod]
     strategy:
@@ -20,6 +22,8 @@ serialPipeline:
         canaryDeployment:
           percentages: [10, 50]
           verify: false
+          postdeploy:
+            actions: ["postdeploy-make-cloud-run-services-public"]
 ---
 
 apiVersion: deploy.cloud.google.com/v1

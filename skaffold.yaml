@@ -1,4 +1,4 @@
-apiVersion: skaffold/v3alpha1
+apiVersion: skaffold/v4beta5
 kind: Config
 metadata:
   name: deploy-run-quickstart
@@ -20,3 +20,10 @@ verify:
     image: alpine
     command: ["/bin/sh"]
     args: ["-c", "wget ${CLOUD_RUN_SERVICE_URLS}"]
+customActions:
+- name: postdeploy-make-cloud-run-services-public
+  containers:
+  - name: gcloud
+    image: 'gcr.io/google.com/cloudsdktool/google-cloud-cli:latest'
+    command: ["/bin/sh"]
+    args: ["-c", "gcloud run services add-iam-policy-binding ${CLOUD_RUN_SERVICE} --member='allUsers' --role=roles/run.invoker --region=${CLOUD_RUN_LOCATION}"]
